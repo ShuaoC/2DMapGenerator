@@ -110,7 +110,8 @@ public class PerlinNoiseMap : MonoBehaviour
         tile_grid[x].Add(tile);
     }
 
-    void GetTile()
+    GameObject GetTile(int x, int y)
     {
+        return tile_grid[x][y];
     }
 }
