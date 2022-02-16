@@ -10,28 +10,37 @@ public class PerlinNoiseMap : MonoBehaviour
     public GameObject dirt_prefab;
     public GameObject water_prefab;
 
-    int map_width = 90;
-    int map_height = 90;
+    int map_width = 150;
+    int map_height = 150;
 
     List<List<int>> noise_grid = new List<List<int>>();
     List<List<GameObject>> tile_grid = new List<List<GameObject>>();
 
-    // Magnificantion changes the frequency of terrain recommend 4 - 20
+    // Magnificantion changes the frequency of all terrain recommend 4 - 20
     float magnification = 14.0f;
 
-    //offset changes the starting point of the perlin noise
-    int x_offset = 0; // <- +>
-    int y_offset = 0; // v- +^
+    //offset changes the starting point of the map
+    //These are fixed value offsets
+    //int x_offset = 0; // <- +>
+    //int y_offset = 0; // v- +^
 
-    
+    //random offset can add more randomness to the generated map
+    //These are random value of offsets
+    int randomOffsetX;
+    int rabdomOffsetY;
+
 
     void Start()
     {
+        randomOffsetX = Random.Range(0, 500);
+        rabdomOffsetY = Random.Range(0, 500);
         CreateTileset();
         CreateTileGroup();
         GenerateMap();
     }
 
+    //This is where you change the code if you want to change the frequency of certain terrain
+    //also remembers to change scale_perlin == values in the if loop in the GetIdUsingPerlin method
     void CreateTileset()
     {
         tileset = new Dictionary<int, GameObject>();
@@ -39,7 +48,8 @@ public class PerlinNoiseMap : MonoBehaviour
         tileset.Add(1, grass_prefab);
         tileset.Add(2, dirt_prefab);
         tileset.Add(3, dirt_prefab);
-        tileset.Add(4, water_prefab);
+        tileset.Add(4, dirt_prefab);
+        tileset.Add(5, water_prefab);
     }
 
     void CreateTileGroup()
@@ -72,20 +82,17 @@ public class PerlinNoiseMap : MonoBehaviour
 
     int GetIdUsingPerlin(int x, int y)
     {
-        //var randomOffsetX = Random.Range(-25,25);
-        //var rabdomOffsetY = Random.Range(-25,25);
         float raw_perlin = Mathf.PerlinNoise(
-            ((x - x_offset) / magnification),
-            ((y - y_offset) / magnification)
+            ((x + randomOffsetX) / magnification),
+            ((y + rabdomOffsetY) / magnification)
             );
-
 
         float clamp_perlin = Mathf.Clamp(raw_perlin, 0.0f, 1.0f);
         float scale_perlin = clamp_perlin * tileset.Count;
 
-        if (scale_perlin == 4)
+        if (scale_perlin == 6)
         {
-            scale_perlin = 3;
+            scale_perlin = 5;
         }
 
         return Mathf.FloorToInt(scale_perlin);
@@ -101,5 +108,9 @@ public class PerlinNoiseMap : MonoBehaviour
         tile.transform.localPosition = new Vector3(x, y, 0);
 
         tile_grid[x].Add(tile);
+    }
+
+    void GetTile()
+    {
     }
 }
