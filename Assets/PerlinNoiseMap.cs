@@ -10,14 +10,16 @@ public class PerlinNoiseMap : MonoBehaviour
     public GameObject dirt_prefab;
     public GameObject water_prefab;
 
-    int map_width = 160;
+    int map_width = 90;
     int map_height = 90;
 
     List<List<int>> noise_grid = new List<List<int>>();
     List<List<GameObject>> tile_grid = new List<List<GameObject>>();
 
-    // recommend 4 - 20
-    float magnification = 7.0f;
+    // Magnificantion changes the frequency of terrain recommend 4 - 20
+    float magnification = 14.0f;
+
+    //offset changes the starting point of the perlin noise
     int x_offset = 0; // <- +>
     int y_offset = 0; // v- +^
 
@@ -34,8 +36,10 @@ public class PerlinNoiseMap : MonoBehaviour
     {
         tileset = new Dictionary<int, GameObject>();
         tileset.Add(0, grass_prefab);
-        tileset.Add(1, dirt_prefab);
-        tileset.Add(2, water_prefab);
+        tileset.Add(1, grass_prefab);
+        tileset.Add(2, dirt_prefab);
+        tileset.Add(3, dirt_prefab);
+        tileset.Add(4, water_prefab);
     }
 
     void CreateTileGroup()
@@ -79,9 +83,9 @@ public class PerlinNoiseMap : MonoBehaviour
         float clamp_perlin = Mathf.Clamp(raw_perlin, 0.0f, 1.0f);
         float scale_perlin = clamp_perlin * tileset.Count;
 
-        if (scale_perlin == 3)
+        if (scale_perlin == 4)
         {
-            scale_perlin = 2;
+            scale_perlin = 3;
         }
 
         return Mathf.FloorToInt(scale_perlin);
