@@ -1,21 +1,19 @@
 ﻿<Properties StartupConfiguration="{B1A0EDF2-9F1F-A46E-DD6B-7753B55E7118}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PerlinNoiseMap.cs">
     <Files>
-      <File FileName="Assets/PerlinNoiseMap.cs" Line="14" Column="6" />
+      <File FileName="Assets/PerlinNoiseMap.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="2DMapGenerator" expanded="True">
-            <Node name="Assets" expanded="True" selected="True" />
-          </Node>
+          <Node name="2DMapGenerator" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="7bd40f6d-ed9e-4f91-87c3-1a13569464dd" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="02892487-71ae-4f68-a5cf-5625f5afb590" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

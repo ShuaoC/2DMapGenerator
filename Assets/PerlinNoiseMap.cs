@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,8 +31,11 @@ public class PerlinNoiseMap : MonoBehaviour
 
     void Start()
     {
-        randomOffsetX = Random.Range(0, 500);
-        rabdomOffsetY = Random.Range(0, 500);
+        System.Random xrandom = new System.Random(2000);
+        randomOffsetX = xrandom.Next(0, 500);
+        rabdomOffsetY = xrandom.Next(0, 500);
+        Debug.Log(randomOffsetX);
+        Debug.Log(rabdomOffsetY);
         CreateTileset();
         CreateTileGroup();
         GenerateMap();
